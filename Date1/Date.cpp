@@ -34,9 +34,27 @@ void Date::operator+=(int day)
 	}
 	d = d % 12;
 	this->day += d;
-	
+	if (this->mounth == 2 && IsLeap(this->year))
+	{
+		if (this->day > 29)
+			this->day = day % 29;
+	}
+	else if (this->mounth == 2 && !(IsLeap(this->year)))
+	{
+		if (this->day > 28)
+			this->day = day % 28;
+	}
+	else if (this->mounth == 1 || this->mounth == 3 || this->mounth == 5 || this->mounth == 7 || this->mounth == 8 || this->mounth == 10 || this->mounth == 12)
+	{
+
+	}
 }
 
+bool IsLeap(int year)
+{
+	if (year % 4 == 0 && year % 100 != 0)
+		if (year % 400 == 0) return true;
+}
 
 Date::~Date()
 {
