@@ -5,17 +5,21 @@ class Date
 {
 private:
 	int day;
-	int mounth;
+	int month;
 	int year;
 	
 public:
 	Date() = default;
-	Date(int day, int mounth, int year);
+	Date(int day, int month, int year);
+
+	void SetDate();
+	void printDate();
 
 	bool operator==(Date &d);
-
 	void operator+=(int day);
+	void operator-=(int day);
 
 	virtual ~Date();
 };
 
+bool IsLeap(int year);
