@@ -12,4 +12,6 @@ void main()
 	d.printDate();
 	d += 40;
 	d.printDate();
+	d -= 40;
+	d.printDate();
 }

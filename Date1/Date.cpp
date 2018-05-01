@@ -49,20 +49,20 @@ void Date::operator+=(int day)
 			this->year += 1;
 		}
 	}
-	if (this->month-1 == 2 && IsLeap(this->year))
+	if (this->month - 1 == 2 && IsLeap(this->year))
 		d = d % 29;
-	else if (this->month-1 == 2 && !(IsLeap(this->year)))
+	else if (this->month - 1 == 2 && !(IsLeap(this->year)))
 		d = d % 28;
-	else if (this->month-1 == 1 || this->month-1 == 3 || this->month-1 == 5 || this->month-1 == 7 || this->month-1 == 8 || this->month-1 == 10 || this->month-1 == 12)
+	else if (this->month - 1 == 1 || this->month - 1 == 3 || this->month - 1 == 5 || this->month - 1 == 7 || this->month - 1 == 8 || this->month - 1 == 10 || this->month - 1 == 0)
 		d = d % 31;
-	else if (this->month-1 == 4 || this->month-1 == 6 || this->month-1 == 9 || this->month-1 == 11)
+	else if (this->month - 1 == 4 || this->month - 1 == 6 || this->month - 1 == 9 || this->month - 1 == 11)
 		d = d % 30;
 	this->day += d;
 	if (this->month == 2 && IsLeap(this->year))
 	{
 		if (this->day > 29)
 		{
-			this->day = day % 29;
+			this->day = this->day % 29;
 			this->month += 1;
 			if (this->month > 12)
 			{
@@ -75,7 +75,7 @@ void Date::operator+=(int day)
 	{
 		if (this->day > 28)
 		{
-			this->day = day % 28;
+			this->day = this->day % 28;
 			this->month += 1;
 			if (this->month > 12)
 			{
@@ -88,7 +88,7 @@ void Date::operator+=(int day)
 	{
 		if (this->day > 31)
 		{
-			this->day = day % 31;
+			this->day = this->day % 31;
 			this->month += 1;
 			if (this->month > 12)
 			{
@@ -101,7 +101,7 @@ void Date::operator+=(int day)
 	{
 		if (this->day > 30)
 		{
-			this->day = day % 30;
+			this->day = this->day % 30;
 			this->month += 1;
 			if (this->month > 12)
 			{
@@ -129,67 +129,67 @@ void Date::operator-=(int day)
 			this->year -= 1;
 		}
 	}
-	if (this->month - 1 == 2 && IsLeap(this->year))
+	if (this->month == 2 && IsLeap(this->year))
 		d = d % 29;
-	else if (this->month - 1 == 2 && !(IsLeap(this->year)))
+	else if (this->month  == 2 && !(IsLeap(this->year)))
 		d = d % 28;
-	else if (this->month - 1 == 1 || this->month - 1 == 3 || this->month - 1 == 5 || this->month - 1 == 7 || this->month - 1 == 8 || this->month - 1 == 10 || this->month - 1 == 12)
+	else if (this->month == 1 || this->month == 3 || this->month  == 5 || this->month  == 7 || this->month == 8 || this->month == 10 || this->month == 0)
 		d = d % 31;
-	else if (this->month - 1 == 4 || this->month - 1 == 6 || this->month - 1 == 9 || this->month - 1 == 11)
+	else if (this->month == 4 || this->month  == 6 || this->month  == 9 || this->month  == 11)
 		d = d % 30;
 	this->day -= d;
-	if (this->month == 1|| this->month == 2 || this->month == 4 || this->month == 6 || )
+	if (this->month == 1|| this->month == 2 || this->month == 4 || this->month == 6 || this->month == 8 || this->month == 9 || this->month == 11)
 	{
 		if (this->day < 1)
 		{
 			this->day = 31+this->day;
 			this->month -= 1;
-			if (this->month > 12)
+			if (this->month < 1)
 			{
-				this->month = this->month % 12;
-				this->year += 1;
+				this->month = 12+this->month;
+				this->year -= 1;
 			}
 		}
 	}
-	else if (this->month == 2 && !(IsLeap(this->year)))
+	else if (this->month == 3 && !(IsLeap(this->year)))
 	{
-		if (this->day > 28)
+		if (this->day < 1)
 		{
-			this->day = day % 28;
-			this->month += 1;
-			if (this->month > 12)
+			this->day = 28 + this->day;
+			this->month -= 1;
+			if (this->month < 1)
 			{
-				this->month = this->month % 12;
-				this->year += 1;
+				this->month = 12 + this->month;
+				this->year -= 1;
 			}
 		}
-	}
-	else if (this->month == 1 || this->month == 3 || this->month == 5 || this->month == 7 || this->month == 8 || this->month == 10 || this->month == 12)
+	}	
+	else if (this->month == 3 && IsLeap(this->year))
 	{
-		if (this->day > 31)
+		if (this->day < 1)
 		{
-			this->day = day % 31;
-			this->month += 1;
-			if (this->month > 12)
+			this->day = 29 + this->day;
+			this->month -= 1;
+			if (this->month < 1)
 			{
-				this->month = this->month % 12;
-				this->year += 1;
+				this->month = 12 + this->month;
+				this->year -= 1;
 			}
 		}
 	}
-	else if (this->month == 4 || this->month == 6 || this->month == 9 || this->month == 11)
+	else if (this->month == 5 || this->month == 7 || this->month == 10 || this->month == 12)
 	{
-		if (this->day > 30)
+		if (this->day < 1)
 		{
-			this->day = day % 30;
-			this->month += 1;
-			if (this->month > 12)
+			this->day = 30 + this->day;
+			this->month -= 1;
+			if (this->month < 1)
 			{
-				this->month = this->month % 12;
-				this->year += 1;
+				this->month = 12 + this->month;
+				this->year -= 1;
 			}
 		}
-	}
+	}	
 }
 
 bool IsLeap(int year)
