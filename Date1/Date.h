@@ -18,6 +18,7 @@ public:
 	bool operator==(Date &d);
 	void operator+=(int day);
 	void operator-=(int day);
+	Date operator+(Date &d);
 
 	virtual ~Date();
 };

@@ -192,6 +192,59 @@ void Date::operator-=(int day)
 	}	
 }
 
+Date Date::operator+(Date & d)
+{
+	Date nd;
+	nd.year = this->year + d.year;
+	nd.month = this->month + d.month;
+	if (nd.month > 12)
+	{
+		nd.month = nd.month % 12;
+		nd.year += 1;
+	}
+	nd.day = this->day + d.day;
+	if (nd.month == 2 && IsLeap(nd.year))
+	{
+		if (nd.day > 29)
+		{
+			nd.day = nd.day % 29;
+			nd.month += 1;
+			if (nd.month > 12)
+			{
+				nd.month = nd.month % 12;
+				nd.year += 1;
+			}
+		}
+	}
+	else if (nd.month == 2 && !(IsLeap(nd.year)))
+	{
+		if (nd.day > 28)
+		{
+			nd.day = nd.day % 28;
+			nd.month += 1;
+			if (nd.month > 12)
+			{
+				nd.month = nd.month % 12;
+				nd.year += 1;
+			}
+		}
+	}
+	else if (nd.month == 1 || nd.month == 3 || nd.month == 5 || )
+	{
+		if (nd.day > 28)
+		{
+			nd.day = nd.day % 28;
+			nd.month += 1;
+			if (nd.month > 12)
+			{
+				nd.month = nd.month % 12;
+				nd.year += 1;
+			}
+		}
+	}
+	return nd;
+}
+
 bool IsLeap(int year)
 {
 	if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
