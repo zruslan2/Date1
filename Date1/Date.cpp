@@ -229,16 +229,95 @@ Date Date::operator+(Date & d)
 			}
 		}
 	}
-	else if (nd.month == 1 || nd.month == 3 || nd.month == 5 || )
+	else if (nd.month == 1 || nd.month == 3 || nd.month == 5 || nd.month == 7 || nd.month == 8 || nd.month == 10 || nd.month == 12 )
 	{
-		if (nd.day > 28)
+		if (nd.day > 31)
 		{
-			nd.day = nd.day % 28;
+			nd.day = nd.day % 31;
 			nd.month += 1;
 			if (nd.month > 12)
 			{
 				nd.month = nd.month % 12;
 				nd.year += 1;
+			}
+		}
+	}
+	else if (nd.month == 4 || nd.month == 6 || nd.month == 9 || nd.month == 11)
+	{
+		if (nd.day > 30)
+		{
+			nd.day = nd.day % 30;
+			nd.month += 1;
+			if (nd.month > 12)
+			{
+				nd.month = nd.month % 12;
+				nd.year += 1;
+			}
+		}
+	}
+	return nd;
+}
+
+Date Date::operator-(Date & d)
+{
+	Date nd;
+	nd.year = this->year - d.year;
+	nd.month = this->month - d.month;
+	if (nd.month < 1)
+	{
+		nd.month = 12 + nd.month;
+		nd.year -= 1;
+	}
+	nd.day = this->day - d.day;
+	if (nd.month == 1 || nd.month == 3 || nd.month == 5 || nd.month == 7 || nd.month == 8 || nd.month == 10 || nd.month == 12)
+	{
+		if (nd.day < 1)
+		{
+			nd.day = 31 + nd.day;
+			nd.month -= 1;
+			if (nd.month < 1)
+			{
+				nd.month = 12 + nd.month;
+				nd.year -= 1;
+			}
+		}
+	}
+	else if (nd.month == 2 && !(IsLeap(nd.year)))
+	{
+		if (nd.day < 1)
+		{
+			nd.day = 28 + nd.day;
+			nd.month -= 1;
+			if (nd.month < 1)
+			{
+				nd.month = 12 + nd.month;
+				nd.year -= 1;
+			}
+		}
+	}
+	else if (nd.month == 2 && IsLeap(nd.year))
+	{
+		if (nd.day < 1)
+		{
+			nd.day = 29 + nd.day;
+			nd.month -= 1;
+			if (nd.month < 1)
+			{
+				nd.month = 12 + nd.month;
+				nd.year -= 1;
+			}
+		}
+	}
+	else if (nd.month == 4 || nd.month == 6 || nd.month == 9 || nd.month == 11)
+	{
+		if (nd.day < 1)
+		{
+			nd.day = 30 + nd.day;
+			nd.month -= 1;
+			if (nd.month < 1)
+			{
+				nd.month = 12 + nd.month;
+				nd.year -= 1;
 			}
 		}
 	}
