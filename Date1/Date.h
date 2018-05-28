@@ -21,6 +21,9 @@ public:
 	Date operator+(Date &d);
 	Date operator-(Date &d);
 
+	static void CurTime(char *ct);
+	static void CurDate(char *ct);
+
 	virtual ~Date();
 };
 

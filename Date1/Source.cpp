@@ -3,6 +3,12 @@
 void main()
 {
 	setlocale(LC_ALL, "");
+	char t[20];
+	/*t[0] = '\0';*/
+	Date::CurTime(t);
+	cout <<"Текущее время - "<< t << endl;
+	Date::CurDate(t);
+	cout << "Текущfz дата - " << t << endl;
 	Date d;
 	d.SetDate();
 	Date d1;
